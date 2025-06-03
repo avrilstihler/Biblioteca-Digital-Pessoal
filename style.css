@@ -1,0 +1,148 @@
+body {
+    font-family: 'Inter', sans-serif;
+    letter-spacing: -0.01em;
+}
+
+.form-label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-bottom: 0.375rem;
+    color: var(--text-muted-color);
+    transition: color 0.2s;
+}
+.form-input {
+    width: 100%;
+    padding: 0.625rem 1rem;
+    border-width: 1px;
+    border-radius: 0.5rem;
+    transition-property: background-color, border-color, color, box-shadow, ring-color;
+    transition-duration: 200ms;
+    background-color: var(--input-bg-color);
+    border-color: var(--input-border-color);
+    color: var(--input-text-color);
+    font-size: 0.875rem;
+}
+.form-input::placeholder {
+    color: var(--placeholder-color);
+    opacity: 0.7;
+}
+.form-input:focus {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    border-color: var(--input-focus-border-color);
+    box-shadow: 0 0 0 3px var(--input-focus-ring-color-with-opacity);
+}
+textarea.form-input {
+    line-height: 1.6;
+}
+
+.star-rating .fa-star {
+    cursor: pointer;
+    transition: color 0.2s ease-in-out, transform 0.15s ease-in-out;
+}
+.star-rating .fa-star:hover {
+    transform: scale(1.15);
+}
+
+.nav-button {
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, transform 0.15s ease-out;
+}
+.nav-button:hover:not(.active) {
+    transform: translateY(-1px);
+}
+.nav-button.active {
+    box-shadow: 0 4px 10px -2px var(--nav-active-shadow-color);
+}
+
+::-webkit-scrollbar { width: 7px; height: 7px; }
+::-webkit-scrollbar-track { background: var(--scrollbar-track-bg); border-radius: 10px;}
+::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb-bg); border-radius: 10px; border: 1.5px solid var(--scrollbar-track-bg); }
+::-webkit-scrollbar-thumb:hover { background: var(--scrollbar-thumb-hover-bg); }
+
+/* Estilo para Tooltips dos botões de ícone */
+.icon-button-tooltip-container {
+    position: relative;
+    display: inline-flex; /* Para alinhar com outros botões se necessário */
+}
+.tooltip-text {
+    visibility: hidden;
+    width: max-content; /* Ajusta a largura ao conteúdo */
+    background-color: var(--tooltip-bg-color, #333); /* Cor de fundo do tooltip */
+    color: var(--tooltip-text-color, #fff); /* Cor do texto do tooltip */
+    text-align: center;
+    border-radius: 0.375rem; /* rounded-md */
+    padding: 0.375rem 0.75rem; /* py-1.5 px-3 */
+    font-size: 0.75rem; /* text-xs */
+    font-weight: 500; /* font-medium */
+    position: absolute;
+    z-index: 10;
+    bottom: 125%; /* Posição acima do botão */
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out, visibility 0s 0.2s; /* Atraso na remoção da visibilidade */
+    white-space: nowrap;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+.tooltip-text::after { /* Flecha do tooltip */
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: var(--tooltip-bg-color, #333) transparent transparent transparent;
+}
+.icon-button-tooltip-container:hover .tooltip-text,
+.icon-button-tooltip-container:focus-within .tooltip-text { /* Mostrar no hover e no foco (para acessibilidade) */
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.2s ease-in-out;
+}
+
+
+:root {
+    --text-muted-color: #4b5563;
+    --placeholder-color: #9ca3af;
+    --input-bg-color: #ffffff;
+    --input-border-color: #d1d5db;
+    --input-text-color: #1f2937;
+    --input-focus-border-color: #2563eb;
+    --input-focus-ring-color-with-opacity: rgba(37, 99, 235, 0.3);
+    --star-active-color: #f59e0b;
+    --nav-button-text-color: #374151;
+    --nav-button-bg-color: transparent;
+    --nav-button-hover-bg-color: rgba(229, 231, 235, 0.7);
+    --nav-button-active-bg-color: #2563eb;
+    --nav-button-active-text-color: #ffffff;
+    --nav-active-shadow-color: rgba(37, 99, 235, 0.25);
+    --scrollbar-track-bg: #e5e7eb;
+    --scrollbar-thumb-bg: #9ca3af;
+    --scrollbar-thumb-hover-bg: #6b7280;
+    --tooltip-bg-color: #1f2937; /* Cor do tooltip no tema claro */
+    --tooltip-text-color: #ffffff;
+}
+
+html.dark {
+    --text-muted-color: #94a3b8;
+    --placeholder-color: #64748b;
+    --input-bg-color: #1e293b;
+    --input-border-color: #334155;
+    --input-text-color: #e2e8f0;
+    --input-focus-border-color: #7c3aed;
+    --input-focus-ring-color-with-opacity: rgba(124, 58, 237, 0.3);
+    --star-active-color: #facc15;
+    --nav-button-text-color: #cbd5e1;
+    --nav-button-bg-color: transparent;
+    --nav-button-hover-bg-color: rgba(51, 65, 85, 0.7);
+    --nav-button-active-bg-color: #7c3aed;
+    --nav-button-active-text-color: #ffffff;
+    --nav-active-shadow-color: rgba(124, 58, 237, 0.25);
+    --scrollbar-track-bg: #334155;
+    --scrollbar-thumb-bg: #64748b;
+    --scrollbar-thumb-hover-bg: #94a3b8;
+    --tooltip-bg-color: #e2e8f0; /* Cor do tooltip no tema escuro */
+    --tooltip-text-color: #1e293b;
+}

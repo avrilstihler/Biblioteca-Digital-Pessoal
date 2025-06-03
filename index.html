@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha Biblioteca Digital</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              light_primary: '#2563eb', // blue-600
+              light_primary_hover: '#1d4ed8', // blue-700
+              light_bg: '#f4f5f7',       // Um cinza um pouco mais quente que gray-100
+              light_surface: '#ffffff',
+              light_text: '#1f2937',
+              light_text_muted: '#4b5563', // gray-600
+              light_border: '#d1d5db',    // gray-300
+              light_star_active: '#f59e0b', // amber-500
+
+              dark_primary: '#7c3aed', // purple-600 (um roxo vibrante para o tema escuro)
+              dark_primary_hover: '#6d28d9', // purple-700
+              dark_bg: '#0f172a',         // slate-900 (um azul escuro profundo)
+              dark_surface: '#1e293b',     // slate-800
+              dark_text: '#e2e8f0',        // slate-200
+              dark_text_muted: '#94a3b8',  // slate-400
+              dark_border: '#334155',      // slate-700
+              dark_star_active: '#facc15',  // yellow-400
+            },
+            boxShadow: {
+              'subtle': '0 4px 12px rgba(0,0,0,0.05)',
+              'subtle-dark': '0 4px 12px rgba(0,0,0,0.15)',
+              'interactive': '0 6px 16px rgba(0,0,0,0.08)',
+              'interactive-dark': '0 6px 16px rgba(0,0,0,0.2)',
+            }
+          }
+        }
+      }
+    </script>
+</head>
+<body class="min-h-screen flex flex-col items-center py-10 sm:py-16 px-4 
+             bg-light_bg text-light_text 
+             dark:bg-dark_bg dark:text-dark_text 
+             transition-colors duration-300 antialiased">
+
+    <div class="w-full max-w-4xl">
+        <div class="flex justify-between items-center mb-8">
+            <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight
+                       text-light_text dark:text-dark_text">
+                Minha Biblioteca <span class="text-light_primary dark:text-dark_primary">Digital</span>
+            </h1>
+            <button id="themeToggleBtn" title="Alternar Tema"
+                    class="p-2.5 rounded-full 
+                           text-light_text_muted hover:text-light_primary dark:text-dark_text_muted dark:hover:text-dark_primary 
+                           hover:bg-light_border/50 dark:hover:bg-dark_border/50
+                           transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 
+                           focus:ring-light_primary dark:focus:ring-dark_primary
+                           focus:ring-offset-light_bg dark:focus:ring-offset-dark_bg">
+                <i class="fa-solid fa-moon text-xl"></i>
+            </button>
+        </div>
+
+        <div class="bg-light_surface dark:bg-dark_surface 
+                    p-6 sm:p-8 md:p-10 rounded-2xl shadow-subtle dark:shadow-subtle-dark">
+            
+            <nav class="mb-10 flex justify-center space-x-3 sm:space-x-4 border-b 
+                        border-light_border dark:border-dark_border pb-5">
+                <button id="showInventoryBtn" class="nav-button px-5 py-2.5 rounded-lg text-sm font-medium">
+                    <i class="fa-solid fa-list-ul mr-2 opacity-80"></i>Meus Livros
+                </button>
+                <button id="showFormBtn" class="nav-button px-5 py-2.5 rounded-lg text-sm font-medium">
+                    <i class="fa-solid fa-plus mr-2 opacity-80"></i>Adicionar Livro
+                </button>
+            </nav>
+
+            <div id="formViewContainer" class="hidden">
+                <form id="bookForm" class="mb-8 p-6 sm:p-8 bg-light_bg/70 dark:bg-dark_bg/70 
+                                         rounded-xl shadow-inner border border-light_border/70 dark:border-dark_border/70">
+                    <h2 id="formTitle" class="text-2xl sm:text-3xl font-semibold text-light_text dark:text-dark_text mb-8 text-center">
+                        Adicionar Novo Livro
+                    </h2>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-5 mb-6">
+                        <div>
+                            <label for="title" class="form-label">Título do Livro</label>
+                            <input type="text" id="title" name="title" required class="form-input">
+                        </div>
+                        <div>
+                            <label for="author" class="form-label">Autor</label>
+                            <input type="text" id="author" name="author" required class="form-input">
+                        </div>
+                    </div>
+
+                    <div class="mb-5">
+                        <label for="imageUrl" class="form-label">URL da Imagem da Capa <span class="font-normal opacity-80">(Opcional)</span></label>
+                        <input type="url" id="imageUrl" name="imageUrl" class="form-input" placeholder="https://exemplo.com/capa.jpg">
+                    </div>
+
+                    <div class="mb-5">
+                        <label for="summary" class="form-label">Pequeno Resumo da História</label>
+                        <textarea id="summary" name="summary" rows="4" required class="form-input resize-y min-h-[100px]"></textarea>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-5 mb-6">
+                        <div>
+                            <label class="form-label">Minha Nota</label>
+                            <div id="ratingStars" class="star-rating text-2xl sm:text-3xl flex items-center space-x-1.5 
+                                                       text-gray-300 dark:text-slate-600">
+                                <i class="fa-solid fa-star" data-value="1"></i>
+                                <i class="fa-solid fa-star" data-value="2"></i>
+                                <i class="fa-solid fa-star" data-value="3"></i>
+                                <i class="fa-solid fa-star" data-value="4"></i>
+                                <i class="fa-solid fa-star" data-value="5"></i>
+                                <input type="hidden" id="rating" name="rating" value="0">
+                            </div>
+                        </div>
+                        <div>
+                            <label for="personalComment" class="form-label">Comentário Pessoal <span class="font-normal opacity-80">(Opcional)</span></label>
+                            <textarea id="personalComment" name="personalComment" rows="4" class="form-input resize-y min-h-[100px]"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="mb-8">
+                        <label for="quote" class="form-label">Citação Favorita <span class="font-normal opacity-80">(Opcional)</span></label>
+                        <textarea id="quote" name="quote" rows="3" class="form-input resize-y min-h-[80px]"></textarea>
+                    </div>
+
+                    <button type="submit" id="submitButton"
+                            class="w-full text-white py-3 sm:py-3.5 px-6 rounded-lg font-semibold shadow-md
+                                   bg-light_primary hover:bg-light_primary_hover
+                                   dark:bg-dark_primary dark:hover:dark_primary_hover
+                                   focus:outline-none focus:ring-2 focus:ring-offset-2 
+                                   focus:ring-light_primary dark:focus:ring-dark_primary
+                                   focus:ring-offset-light_surface dark:focus:ring-offset-dark_surface
+                                   transition-all duration-200 ease-in-out transform hover:scale-[1.02]">
+                        Adicionar Livro
+                    </button>
+                </form>
+            </div>
+
+            <div id="inventoryViewContainer">
+                <div id="bookList" class="grid grid-cols-1 gap-x-6 gap-y-8">
+                </div>
+                <p id="noBooksMessage" class="hidden text-center text-light_text_muted dark:text-dark_text_muted py-10 text-lg">
+                    <i class="fa-regular fa-folder-open fa-2x mb-3 opacity-60"></i><br>
+                    Sua biblioteca está vazia.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div id="messageBox" class="fixed inset-0 bg-black/60 dark:bg-black/75 backdrop-blur-sm flex items-center justify-center z-50 hidden p-4">
+        <div class="p-7 rounded-xl shadow-xl max-w-md w-full text-center
+                    bg-light_surface dark:bg-dark_surface
+                    border border-light_border/70 dark:border-dark_border/70">
+            <div id="messageBoxContent">
+            </div>
+        </div>
+    </div>
+    
+    <footer class="mt-12 text-center text-xs text-light_text_muted dark:text-dark_text_muted opacity-80">
+        <p>© <span id="currentYear"></span> Minha Biblioteca Digital. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
