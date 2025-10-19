@@ -2,6 +2,8 @@
 
 Uma aplicação web de biblioteca pessoal feita com JavaScript, que permite adicionar, editar, listar e excluir livros — com suporte a **modo claro/escuro**, avaliação com estrelas, comentários, citações favoritas e **armazenamento local** via `localStorage`.
 
+> Imagens da aplicação no modo escuro:
+
 ![meus livros](https://i.postimg.cc/bwtzq6yD/Captura-de-tela-2025-10-19-152854.png)
 
 ![adicionar livros](https://i.postimg.cc/Z5BqCbc5/Captura-de-tela-2025-10-19-152815.png)
