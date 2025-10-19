@@ -2,6 +2,8 @@
 
 Uma aplicação web de biblioteca pessoal feita com JavaScript, que permite adicionar, editar, listar e excluir livros — com suporte a **modo claro/escuro**, avaliação com estrelas, comentários, citações favoritas e **armazenamento local** via `localStorage`.
 
+⚠️ Atualmente a permanência dos dados ainda não está funcionando, mas é uma melhoria prevista ⚠️
+
 > Imagens da aplicação no modo escuro:
 
 ![meus livros](https://i.postimg.cc/bwtzq6yD/Captura-de-tela-2025-10-19-152854.png)
@@ -25,13 +27,6 @@ Uma aplicação web de biblioteca pessoal feita com JavaScript, que permite adic
  
 - Interface responsiva e interativa
 
-## 🛠️ Tecnologias usadas
-
-- HTML5
-- CSS3 (com uso de variáveis para temas)
-- JavaScript (DOM, eventos, lógica, `localStorage`)
-- Font Awesome (ícones)
-- [Placehold.co](https://placehold.co/) (imagem placeholder automática)
 
 ## 📦 Organização
 
@@ -40,4 +35,7 @@ A aplicação é dividida em duas abas principais:
 **📋 Meus Livros**: lista de livros cadastrados, ordenados alfabeticamente
 
 **➕ Adicionar Livros**: para adicionar ou editar livros
+
+
+
 
